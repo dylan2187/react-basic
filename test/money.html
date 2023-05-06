@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>调试测试</title>
+</head>
+
+<body>
+  <input type="text" id="n">
+  <button onClick="main()">计算</button>
+
+  <script>
+    let COINS = [64, 16, 4, 1]
+    function coinChange (rest, idx) {
+      if (rest >= COINS[idx]) {
+        console.log('rest:', rest, 'coin: ', COINS[idx])
+        rest -= COINS[idx]
+        return 1 + coinChange(rest, idx)
+      }
+      else if (rest > 0 && idx < COINS.length) {
+        return coinChange(rest, ++idx)
+      }
+      return 0
+
+    }
+    //获取输入框元素
+    let input = document.getElementById('n')
+    //计算执行入口
+    function main () {
+      let n = parseInt(input.value)
+      let ans = coinChange(1024 - n, 0)
+      alert(ans)
+
+    }
+  </script>
+
+
+</body>
+
+</html>

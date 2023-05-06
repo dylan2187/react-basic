@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script src="./lib/react.js"></script>
+  <script src="./lib/react-dom.js"></script>
+  <script src="./lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.定义App根组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: "Hello World",
+          title: 'title1',
+          imgURL: 'https://img2.baidu.com/it/u=1164402888,4041025726&fm=253&fmt=auto&app=138&f=JPEG?w=745&h=500',
+          isActice: true,
+        }
+      }
+
+      render () {
+        const { isActice, message, title, imgURL } = this.state
+        const classList = ['abc', 'cba']
+        if (isActice) classList.push('active')
+        return (
+          <div>
+            <h2 title={title}>{message}</h2>
+            <img src={imgURL} alt="" />
+
+            <h2 class="abc cba">hahahha</h2>
+            <h2 class={classList.join(' ')}>hahahha</h2>
+          </div>
+        )
+      }
+    }
+
+    // 2.创建root并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App />)
+  </script>
+
+</body>
+
+</html>

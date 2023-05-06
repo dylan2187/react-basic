@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+  <style>
+    .item {
+      border: 1px solid orange;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.定义App根组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: "Hello World",
+          students: [
+            { id: 111, name: "why", score: 199 },
+            { id: 112, name: "kobe", score: 98 },
+            { id: 113, name: "james", score: 199 },
+            { id: 114, name: "curry", score: 188 },
+          ]
+        }
+      }
+
+      render () {
+        const { message, students } = this.state
+        const filStudent = students.filter((item) => {
+          return item.score > 100
+        })
+        const sliceStudent = filStudent.slice(0, 2)
+
+        return (
+
+          <div>
+            <h2>student list</h2>
+            <div className='list'>
+              {
+
+                sliceStudent.map((item) => {
+                  return (
+                    <div className='item' key={item.id}>
+                      <h2>id:{item.id}</h2>
+                      <h3>name:{item.name}</h3>
+                      <h4>score:{item.score}</h4>
+
+                    </div>
+
+                  )
+                })
+              }
+            </div>
+
+          </div>
+        )
+      }
+    }
+
+    // 2.创建root并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App />)
+  </script>
+
+</body>
+
+</html>

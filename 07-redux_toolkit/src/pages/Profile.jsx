@@ -7,7 +7,7 @@ export class Profile extends Component {
     this.props.addNumber(num)
   }
   render() {
-    const { counter } = this.props
+    const { counter, banners, recommends } = this.props
     return (
       <div>
         <h1>Profile</h1>
@@ -15,6 +15,20 @@ export class Profile extends Component {
         <button onClick={() => this.props.addNumber(2)}>+2</button>
         <button onClick={() => this.props.multipleNumber(2)}>x2</button>
         <button onClick={() => this.props.addNumber(-4)}>-4</button>
+        <div>
+          <h2>轮播图</h2>
+          <ul>
+            {banners.map((item, index) => {
+              return <li key={item.title}>{item.title}</li>
+            })}
+          </ul>
+          <h2>推荐商品</h2>
+          <ul>
+            {recommends.map((item, index) => {
+              return <li key={item.title}>{item.title}</li>
+            })}
+          </ul>
+        </div>
       </div>
     )
   }
@@ -22,6 +36,8 @@ export class Profile extends Component {
 
 const mapStateToProps = (state) => ({
   counter: state.counter.counter,
+  banners: state.home.banners,
+  recommends: state.home.recommends,
 })
 
 const mapDispatchToProps = (dispatch) => ({

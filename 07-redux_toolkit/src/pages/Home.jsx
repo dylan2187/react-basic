@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addNumber, multipleNumber } from '../store/modules/counter'
+import { fetchHomeMultidataAction } from '../store/modules/home'
 
 export class Home extends Component {
+  componentDidMount() {
+    this.props.fetchHomeMultidataAction()
+  }
   render() {
     const { counter } = this.props
     return (
@@ -25,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   multipleNumber(num) {
     dispatch(multipleNumber(num))
+  },
+  fetchHomeMultidataAction() {
+    dispatch(fetchHomeMultidataAction())
   },
 })
 
